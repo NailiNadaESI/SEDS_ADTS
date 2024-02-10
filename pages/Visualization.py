@@ -2,7 +2,6 @@ import streamlit as st
 
 import numpy as np
 import pandas as pd
-import scipy.stats as stats
 import matplotlib.pyplot as plt
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 from statsmodels.tsa.vector_ar.var_model import VAR
