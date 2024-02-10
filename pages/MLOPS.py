@@ -1,4 +1,5 @@
 import streamlit as st
+from streamlit_reveal_slides import st_reveal_slides 
 
 st_reveal_slides(
         {
