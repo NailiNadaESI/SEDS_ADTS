@@ -1,21 +1,21 @@
-import pandas as pd 
-import numpy as np 
 import streamlit as st
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from statsmodels.tsa.statespace.sarimax import SARIMAX
+from statsmodels.tsa.vector_ar.var_model import VAR
+
 
 st.set_page_config(page_title='Preprocessing ', page_icon='🗒️')
 st.markdown('# 🗒️ Preprocessing :')
 
 def preprocess_app():
-    
-
     st.write ("### 1/ Loading the dataset:")
     train_hours = 100*7*24 
     test_hours = 20*7*24  
 
     df = pd.read_csv('data/bike-and-ped-counter.csv.zip', nrows=train_hours+test_hours, parse_dates=['Date'])
-
-
-    #df.set_index('Date')
     st.write(df)
 
     st.write("First we need to have a global idea about the dataset by generating  a small description of the dataset")
@@ -51,5 +51,31 @@ def preprocess_app():
     df_day.index = pd.DatetimeIndex(df_day.index.values, freq=df_day.index.inferred_freq)
     df_day.to_csv("data/preprocessedData.csv")
     st.write(df_day)
+
+    st.write("### 4/Plotting The data:")
+    columns = df_day.columns.difference(['Date'])
+    colors = ['blue', 'green', 'red', 'purple', 'orange']
+
+    fig, axes = plt.subplots(nrows=len(columns), ncols=1, figsize=(16, 6 * len(columns)))
+
+    for clm, color, ax in zip(columns, colors, axes):
+      df_day[clm].plot(ax=ax, color=color)
+      ax.set_xlabel('Date')
+      ax.set_ylabel('Values')
+      ax.set_title(f'Plot of {clm}')
+    
+    plt.tight_layout()
+    st.pyplot(fig)
+
+    fig, ax = plt.subplots(figsize=(16, 6))
+    for clm, color in zip(columns, colors):
+       df_day[clm].plot(ax=ax, color=color, label=clm)
+    ax.set_xlabel('Date')
+    ax.set_ylabel('Values')
+    ax.set_title('Plot of All Columns')
+    ax.legend()
+    st.pyplot(fig)
+
+    df_day.to_csv('data/PreprocessedData.csv')
 
 preprocess_app()

@@ -2,11 +2,10 @@ import streamlit as st
 import reveal_slides as rs
 
 sample_markdown = r"""
-# Reveal.js + Streamlit
-Add <a target="_blank" href="https://revealjs.com/">Reveal.js</a> presentations to your Streamlit app.
+MLOPS .
 ---
-## Installation
-`pip install streamlit-reveal-slides`
+## What is MLOps?
+MLOps, or Machine Learning Operations, is a pivotal component within the realm of Machine Learning engineering. It is dedicated to streamlining the entire lifecycle of deploying machine learning models into production and managing them thereafter. This multifaceted function relies on collaboration among diverse roles, such as data scientists, devops engineers, and IT professionals, to ensure a cohesive and efficient approach to deploying and maintaining machine learning models.
 
 \[[GitHub](https://github.com/bouzidanas/streamlit.io/tree/7748c2a97f4ca54ce4b8120a054d6c66e8be296d/streamlit-reveal-slides)\] \[[PyPI](https://pypi.org/project/streamlit-reveal-slides/)\]
 ---
