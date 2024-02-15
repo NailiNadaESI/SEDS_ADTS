@@ -11,3 +11,8 @@ st.set_page_config(page_title='Modeling ', page_icon='💻')
 st.markdown('# 💻 Modeling :')
 
 st.write ("### 1/ The dataset:")
+train = pd.read_csv('data/PreprocessedData_Train.csv')
+train.rename(columns={"Unnamed: 0":"Date"},inplace=True)
+train.set_index("Date", inplace=True)
+
+st.write(train)

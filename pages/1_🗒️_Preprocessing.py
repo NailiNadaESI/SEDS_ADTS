@@ -12,7 +12,7 @@ st.markdown('# 🗒️ Preprocessing :')
 
 def preprocess_app():
     st.write ("### 1/ Loading the dataset:")
-    train_hours = 100*7*24 
+    train_hours = 100*7*24
     test_hours = 20*7*24  
 
     df = pd.read_csv('data/bike-and-ped-counter.csv.zip', nrows=train_hours+test_hours, parse_dates=['Date'])
@@ -54,7 +54,7 @@ def preprocess_app():
 
     st.write("### 4/Plotting The data:")
     columns = df_day.columns.difference(['Date'])
-    colors = ['blue', 'green', 'red', 'purple', 'orange']
+    colors = ['blue', 'green', 'red', 'purple', 'pink']
 
     fig, axes = plt.subplots(nrows=len(columns), ncols=1, figsize=(16, 6 * len(columns)))
 
@@ -76,6 +76,8 @@ def preprocess_app():
     ax.legend()
     st.pyplot(fig)
 
-    df_day.to_csv('data/PreprocessedData.csv')
+    df_day[:(train_hours//24)].to_csv('data/PreprocessedData_Train.csv')
+    df_day[:(test_hours//24)].to_csv('data/PreprocessedData_Test.csv')
+    
 
 preprocess_app()
